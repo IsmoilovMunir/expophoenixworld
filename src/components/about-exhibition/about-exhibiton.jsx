@@ -4,8 +4,8 @@ import './about-exhibition.css'
 export default function AboutExhibition() {
 	return (
 		<>
-			<div className='max-w-350 m-auto flex justify-between items-center pt-10'>
-				<aside className='flex flex-col w-[37%]'>
+			<div className='px-5 md:px-0 text-center md:text-start max-w-350 m-auto flex justify-between md:flex-row flex-col items-center md:pt-10 gap-5 md:gap-0'>
+				<aside className='flex flex-col md:w-[37%]'>
 					<h1 className='text-[52px] font-bold'>
 						О <span className='text-[#FFD23E]'>выставке </span>{' '}
 					</h1>
