@@ -7,8 +7,8 @@ export default function Stats() {
 		},
 		{
 			id: 2,
-			title: 'участников',
-			numb: '500+',
+			title: 'супер участников',
+			numb: '5000+',
 		},
 		{
 			id: 4,
@@ -23,11 +23,13 @@ export default function Stats() {
 	]
 	return (
 		<>
-			<div className='max-w-350 m-auto mt-15 flex justify-between'>
+			<div className='px-5 md:px-0 max-w-350 m-auto mt-15 gap-16 flex md:flex-row flex-wrap justify-between '>
 				{stats.map(el => (
 					<div key={el.id} className='font-bold'>
-						<span className='text-[54px] text-[#FFD23E]'>{el.numb}</span>
-						<p className='text-[24px]'>{el.title}</p>
+						<span className='md:text-[54px] text-[30px] text-[#FFD23E] flex'>
+							{el.numb}
+						</span>
+						<p className='md:text-[24px] text-[20px]'>{el.title}</p>
 					</div>
 				))}
 			</div>

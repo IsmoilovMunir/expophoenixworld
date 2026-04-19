@@ -1,0 +1,18 @@
+/* .custom-select .ant-select-selector {
+  background-color: #0b1220 !important;
+  border: none !important;
+  color: white !important;
+}
+
+.custom-select .ant-select-arrow {
+  color: white;
+} */
+
+@media (max-width: 700px) {
+  .custom-select{
+    display: none;
+  }
+
+  
+}
+
