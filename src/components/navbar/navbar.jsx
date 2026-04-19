@@ -29,7 +29,7 @@ export default function Navbar() {
 				}
 				className=' md:px-0 relative max-w-350 m-auto flex justify-between items-center py-3'
 			>
-				<img src={logo} alt='' className='pl-5' />
+				<img src={logo} alt='' className='pl-5 md:pl-0' />
 				<ul className='hidden md:flex gap-5'>
 					<li>
 						<Button
@@ -235,7 +235,7 @@ export default function Navbar() {
 					</button>
 				</div>
 			</nav>
-			<MobileMenu open={menuBtn} onClose={openMenu}/>
+			<MobileMenu open={menuBtn} onClose={openMenu} />
 		</>
 	)
 }
