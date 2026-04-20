@@ -1,9 +1,11 @@
 import 'leaflet/dist/leaflet.css'
 import { useState } from 'react'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { useLanguage } from '../../context/language-context'
 import './map.css'
 
 export const MapComponent = () => {
+	const { isEnglish } = useLanguage()
 	const tileSources = [
 		{
 			url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -27,7 +29,9 @@ export const MapComponent = () => {
 
 	return (
 		<div className='px-5 md:px-0 items-center md:items-start max-w-350 m-auto flex flex-col gap-5 md:gap-6'>
-			<h1 className='md:text-[52px] text-[36px] font-extrabold'>Контакты</h1>
+			<h1 className='md:text-[52px] text-[36px] font-extrabold'>
+				{isEnglish ? 'Contacts' : 'Контакты'}
+			</h1>
 			<MapContainer
 				///@ts-ignore
 				center={[55.759179, 37.682078]}
@@ -51,7 +55,8 @@ export const MapComponent = () => {
 
 				<Marker position={[55.759179, 37.682078]}>
 					<Popup>
-						Вилла Фенникс <br /> Гостиница.
+						{isEnglish ? 'Villa Phoenix' : 'Вилла Фенникс'} <br />
+						{isEnglish ? 'Hotel.' : 'Гостиница.'}
 					</Popup>
 				</Marker>
 			</MapContainer>

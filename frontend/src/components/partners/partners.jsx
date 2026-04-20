@@ -1,8 +1,10 @@
 import brics from '../../assets/brics.png'
 import kpk from '../../assets/kpk.png'
 import ldpr from '../../assets/ldpr.png'
+import { useLanguage } from '../../context/language-context'
 
 export default function Partners() {
+	const { isEnglish } = useLanguage()
 	const partners = [
 		{
 			id: 1,
@@ -22,7 +24,10 @@ export default function Partners() {
 			<section className='w-full relative pt-15'>
 				<div className='px-5 md:px-0 text-center md:text-start max-w-350 m-auto flex flex-col gap-5 relative z-10'>
 					<h1 className='md:text-[52px] text-[36px] font-extrabold'>
-						<span className='text-[#FFD23E]'>Партнеры</span> ВЫСТАВКИ
+						<span className='text-[#FFD23E]'>
+							{isEnglish ? 'Exhibition' : 'Партнеры'}
+						</span>{' '}
+						{isEnglish ? 'PARTNERS' : 'ВЫСТАВКИ'}
 					</h1>
 
 					<div className='rounded-3xl border border-white/12 bg-white/4 backdrop-blur-md p-3 md:p-5 shadow-[0_10px_50px_rgba(17,24,39,0.35)]'>

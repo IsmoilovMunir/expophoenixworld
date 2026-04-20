@@ -1,32 +1,42 @@
 import { PlusOutlined } from '@ant-design/icons'
 import { Collapse } from 'antd'
+import { useLanguage } from '../../context/language-context'
 import './faq.css'
 
 export default function Faq() {
+	const { isEnglish } = useLanguage()
 	const items = [
 		{
 			key: '1',
-			label: 'Как принять участие в выставке?',
+			label: isEnglish
+				? 'How can I participate in the exhibition?'
+				: 'Как принять участие в выставке?',
 			children: <p>description</p>,
 		},
 		{
 			key: '2',
-			label: 'Кто может участвовать?',
+			label: isEnglish ? 'Who can participate?' : 'Кто может участвовать?',
 			children: <p>description</p>,
 		},
 		{
 			key: '3',
-			label: 'Можно ли представить свою продукцию или услуги?',
+			label: isEnglish
+				? 'Can I present my products or services?'
+				: 'Можно ли представить свою продукцию или услуги?',
 			children: <p>description</p>,
 		},
 		{
 			key: '4',
-			label: 'Есть ли ограничение по количеству мест?',
+			label: isEnglish
+				? 'Is there a limit on the number of seats?'
+				: 'Есть ли ограничение по количеству мест?',
 			children: <p>description</p>,
 		},
 		{
 			key: '5',
-			label: 'Какие возможности даёт участие?',
+			label: isEnglish
+				? 'What opportunities does participation provide?'
+				: 'Какие возможности даёт участие?',
 			children: <p>description</p>,
 		},
 	]

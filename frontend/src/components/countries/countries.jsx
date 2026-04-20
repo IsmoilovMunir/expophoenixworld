@@ -7,8 +7,10 @@ import iran from '../../assets/iran.png'
 import oae from '../../assets/oae.png'
 import russia from '../../assets/russia.png'
 import turk from '../../assets/turk.png'
+import { useLanguage } from '../../context/language-context'
 
 export default function Countries() {
+	const { isEnglish } = useLanguage()
 	const earthRef = useRef(null)
 	const earthInstanceRef = useRef(null)
 	const highlightLayersRef = useRef([])
@@ -23,49 +25,49 @@ export default function Countries() {
 	const countries = [
 		{
 			id: 1,
-			title: 'Россия',
+			title: isEnglish ? 'Russia' : 'Россия',
 			flag: russia,
 			center: [61.524, 105.3188],
 			geoName: 'Russia',
 		},
 		{
 			id: 2,
-			title: 'Китай',
+			title: isEnglish ? 'China' : 'Китай',
 			flag: chine,
 			center: [35.8617, 104.1954],
 			geoName: 'China',
 		},
 		{
 			id: 3,
-			title: 'Иран',
+			title: isEnglish ? 'Iran' : 'Иран',
 			flag: iran,
 			center: [32.4279, 53.688],
 			geoName: 'Iran',
 		},
 		{
 			id: 4,
-			title: 'Турция',
+			title: isEnglish ? 'Turkey' : 'Турция',
 			flag: turk,
 			center: [38.9637, 35.2433],
 			geoName: 'Turkey',
 		},
 		{
 			id: 5,
-			title: 'ОАЭ',
+			title: isEnglish ? 'UAE' : 'ОАЭ',
 			flag: oae,
 			center: [23.4241, 53.8478],
 			geoName: 'United Arab Emirates',
 		},
 		{
 			id: 6,
-			title: 'Индия',
+			title: isEnglish ? 'India' : 'Индия',
 			flag: india,
 			center: [20.5937, 78.9629],
 			geoName: 'India',
 		},
 		{
 			id: 7,
-			title: 'Афганистан',
+			title: isEnglish ? 'Afghanistan' : 'Афганистан',
 			flag: afganistan,
 			center: [33.9391, 67.71],
 			geoName: 'Afghanistan',
@@ -199,7 +201,7 @@ export default function Countries() {
 				atmosphere: true,
 				sky: true,
 			})
-			earth.setView([46.8011, 8.2266], 2.4)
+			earth.setView([46.8011, 8.2266], 1.9)
 
 			WE.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				attribution:
@@ -247,11 +249,19 @@ export default function Countries() {
 			<div className='px-5 md:px-0 text-center max-w-350 m-auto flex flex-col gap-6'>
 				<div className='flex md:flex-row flex-col items-center justify-between gap-3 md:gap-0'>
 					<h1 className='md:text-[52px] text-[36px] font-extrabold'>
-						<span className='text-[#FFD23E]'>Страны</span>-участники
+						<span className='text-[#FFD23E]'>
+							{isEnglish ? 'Participating' : 'Страны'}
+						</span>
+						{isEnglish ? ' countries' : '-участники'}
 					</h1>
 					<p className='md:text-[24px] text-[16px] leading-snug font-light'>
-						Делегации и представители бизнеса из следующих <br className='hidden md:block' /> стран уже
-						подтвердили участие в выставке
+						{isEnglish
+							? 'Delegations and business representatives from the following '
+							: 'Делегации и представители бизнеса из следующих '}
+						<br className='hidden md:block' />
+						{isEnglish
+							? 'countries have already confirmed participation in the exhibition.'
+							: 'стран уже подтвердили участие в выставке'}
 					</p>
 				</div>
 

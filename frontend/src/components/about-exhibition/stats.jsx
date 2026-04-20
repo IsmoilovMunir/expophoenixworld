@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useLanguage } from '../../context/language-context'
 
 const STEP_INTERVAL_MS = 250
 
@@ -7,35 +8,36 @@ function formatNumber(value) {
 }
 
 export default function Stats() {
+	const { isEnglish } = useLanguage()
 	const stats = [
 		{
 			id: 1,
-			title: 'компаний',
+			title: isEnglish ? 'companies' : 'компаний',
 			target: 500,
 			step: 100,
 			suffix: '+',
 		},
 		{
 			id: 2,
-			title: 'супер участников',
+			title: isEnglish ? 'top participants' : 'супер участников',
 			target: 5000,
 			step: 1000,
 			suffix: '+',
 		},
 		{
 			id: 4,
-			title: 'пространства',
+			title: isEnglish ? 'of space' : 'пространства',
 			target: 10000,
 			step: 1000,
-			suffix: ' кв.м',
+			suffix: isEnglish ? ' m2' : ' кв.м',
 			useGrouping: true,
 		},
 		{
 			id: 5,
-			title: 'на участника',
+			title: isEnglish ? 'per participant' : 'на участника',
 			target: 10,
 			step: 1,
-			suffix: ' кв.м',
+			suffix: isEnglish ? ' m2' : ' кв.м',
 		},
 	]
 
@@ -120,7 +122,7 @@ export default function Stats() {
 		<>
 			<div
 				ref={sectionRef}
-				className='px-5 md:px-0 max-w-350 m-auto mt-10 md:mt-15 flex flex-nowrap md:flex-wrap gap-6 md:gap-16 overflow-x-auto md:overflow-visible'
+				className='px-5 md:px-0 max-w-350 m-auto mt-6 md:mt-8 flex flex-nowrap md:flex-wrap gap-8 md:gap-16 overflow-x-auto md:overflow-visible'
 			>
 				{stats.map((el, index) => {
 					const rawValue = animatedValues[index] ?? 0

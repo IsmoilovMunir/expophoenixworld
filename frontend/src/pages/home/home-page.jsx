@@ -68,16 +68,16 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			<section id='about' className='pt-8 md:pt-0'>
+			<section id='about' className='pt-6 md:pt-0'>
 				<AboutExhibition />
 				<Stats />
 			</section>
 
-			<section className='pt-12 md:pt-15'>
+			<section className='pt-6 md:pt-8'>
 				<Video />
 			</section>
 
-			<section ref={whySectionRef} className='w-full relative pt-12 md:pt-15' id='why'>
+			<section ref={whySectionRef} className='w-full relative pt-6 md:pt-8' id='why'>
 				<img
 					ref={yellowParallaxRef}
 					src={yellow}
@@ -93,11 +93,11 @@ export default function HomePage() {
 				<WhyParticipate />
 			</section>
 
-			<section className='pt-12 md:pt-15'>
+			<section className='pt-6 md:pt-8'>
 				<Countries />
 			</section>
 
-			<section className='w-full relative pt-12 md:pt-15'>
+			<section className='w-full relative pt-6 md:pt-8'>
 				<img
 					src={blue}
 					alt=''
@@ -111,19 +111,19 @@ export default function HomePage() {
 				<WhatItDo />
 			</section>
 
-			<section className='pt-12 md:pt-15' id='partners'>
+			<section className='pt-6 md:pt-8' id='partners'>
 				<Partners />
 			</section>
 
-			<section className='pt-12 md:pt-15'>
+			<section className='pt-6 md:pt-8'>
 				<Place />
 			</section>
 
-			<section id='formats' className='pt-12 md:pt-15'>
+			<section id='formats' className='pt-6 md:pt-8'>
 				<Formats />
 			</section>
 
-			<section className='w-full relative pt-12 md:pt-15' id='faq'>
+			<section className='w-full relative pt-6 md:pt-8' id='faq'>
 				<img
 					src={blue}
 					alt=''
@@ -137,7 +137,7 @@ export default function HomePage() {
 				<Faq />
 			</section>
 
-			<section className='pt-10'>
+			<section className='pt-6 md:pt-8'>
 				<MapComponent />
 			</section>
 		</>
