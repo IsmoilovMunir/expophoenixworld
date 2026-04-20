@@ -1,0 +1,14 @@
+.site-map {
+	background: #111827;
+}
+
+.site-map .leaflet-control-zoom a {
+	background: rgba(11, 15, 26, 0.9);
+	color: #ffffff;
+	border-color: rgba(255, 255, 255, 0.25);
+}
+
+.site-map .leaflet-control-attribution {
+	background: rgba(11, 15, 26, 0.65);
+	color: #d1d5db;
+}

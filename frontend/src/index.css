@@ -1,0 +1,163 @@
+@import 'tailwindcss';
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-Thin.ttf') format('truetype');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-Extralight.ttf') format('truetype');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-Semibold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-Super.ttf') format('truetype');
+	font-weight: 950;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-ThinItalic.ttf') format('truetype');
+	font-weight: 100;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-ExtralightItalic.ttf') format('truetype');
+	font-weight: 200;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-LightItalic.ttf') format('truetype');
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-RegularItalic.ttf') format('truetype');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-MediumItalic.ttf') format('truetype');
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-SemiboldItalic.ttf') format('truetype');
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-BoldItalic.ttf') format('truetype');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-BlackItalic.ttf') format('truetype');
+	font-weight: 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Graphik LCG';
+	src: url('./assets/fonts/GraphikLCG-SuperItalic.ttf') format('truetype');
+	font-weight: 950;
+	font-style: italic;
+	font-display: swap;
+}
+
+body {
+	font-family: 'Graphik LCG', sans-serif;
+	font-weight: 400;
+	background-color: #0b0f1a;
+	color: white;
+}
+
+h1 {
+	text-transform: uppercase;
+}
+
+@media (max-width: 700px){
+	h1 {
+		font-size: 26px !important;
+		line-height: 1.15;
+	}
+}
