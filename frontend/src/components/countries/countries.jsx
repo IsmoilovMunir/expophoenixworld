@@ -204,7 +204,7 @@ export default function Countries() {
 			})
 			earth.setView([46.8011, 8.2266], 1.9)
 
-			WE.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			WE.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				attribution:
 					'<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>',
 			}).addTo(earth)
