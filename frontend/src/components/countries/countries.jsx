@@ -17,6 +17,7 @@ export default function Countries() {
 	const geoJsonFeaturesRef = useRef([])
 	const animationFrameRef = useRef(0)
 	const isAutoRotateRef = useRef(true)
+	const COUNTRY_FOCUS_ZOOM = 2.1
 	const [isWebGlReady, setIsWebGlReady] = useState(false)
 	const [isWebGlScriptReady, setIsWebGlScriptReady] = useState(false)
 	const [isGeoJsonReady, setIsGeoJsonReady] = useState(false)
@@ -134,7 +135,7 @@ export default function Countries() {
 			return
 		}
 
-		earth.setView(country.center, 4)
+		earth.setView(country.center, COUNTRY_FOCUS_ZOOM)
 		clearHighlightLayers()
 
 		const feature = geoJsonFeaturesRef.current.find(
@@ -254,14 +255,10 @@ export default function Countries() {
 						</span>
 						{isEnglish ? ' countries' : '-участники'}
 					</h1>
-					<p className='md:text-[24px] text-[16px] leading-snug font-light'>
+					<p className='md:text-[24px] text-[16px] leading-snug font-light text-center md:text-right md:mt-2'>
 						{isEnglish
-							? 'Delegations and business representatives from the following '
-							: 'Делегации и представители бизнеса из следующих '}
-						<br className='hidden md:block' />
-						{isEnglish
-							? 'countries have already confirmed participation in the exhibition.'
-							: 'стран уже подтвердили участие в выставке'}
+							? 'The "Phoenix + BRICS" exhibition will bring together delegations and business community representatives from key BRICS+ countries, including:'
+							: 'Выставка «Феникс + БРИКС» соберёт делегации и представителей бизнес-сообщества из ключевых стран объединения BRICS+, включая:'}
 					</p>
 				</div>
 
@@ -311,6 +308,13 @@ export default function Countries() {
 							</button>
 						</div>
 					))}
+				</div>
+				<div className='mx-auto mt-3 md:mt-4 w-fit rounded-2xl border border-white/15 bg-white/5 px-4 py-2 backdrop-blur-md'>
+					<p className='text-center text-[15px] md:text-[18px] font-bold uppercase tracking-wide bg-gradient-to-r from-[#FFE28A] via-[#FFD23E] to-[#E8B923] bg-clip-text text-transparent [text-shadow:0_0_22px_rgba(255,210,62,0.28)]'>
+						{isEnglish
+							? 'All listed parties have already confirmed their participation in the event.'
+							: 'Все указанные стороны уже подтвердили своё участие в мероприятии.'}
+					</p>
 				</div>
 			</div>
 		</>

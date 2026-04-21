@@ -122,32 +122,40 @@ export default function Stats() {
 		<>
 			<div
 				ref={sectionRef}
-				className='px-5 md:px-0 max-w-350 m-auto mt-6 md:mt-8 flex flex-nowrap md:flex-wrap gap-8 md:gap-16 overflow-x-auto md:overflow-visible'
+				className='px-5 md:px-0 max-w-350 m-auto mt-6 md:mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5'
 			>
 				{stats.map((el, index) => {
 					const rawValue = animatedValues[index] ?? 0
 					const displayValue = el.useGrouping ? formatNumber(rawValue) : rawValue
 					const progress = cardProgress[index] ?? 0
-					const lift = (1 - progress) * 10
-					const glow = 0.15 + (1 - progress) * 0.35
+					const lift = (1 - progress) * 4
+					const glow = 0.22 + progress * 0.12
+
+					const hasLongValue = el.useGrouping || el.id === 5
 
 					return (
 					<div
 						key={el.id}
-						className='transition-all duration-300 shrink-0 min-w-[140px] md:min-w-0 rounded-2xl border border-white/15 bg-white/8 backdrop-blur-md px-3 py-2 md:rounded-none md:border-0 md:bg-transparent md:backdrop-blur-0 md:px-0 md:py-0'
-						style={{ opacity: 0.75 + progress * 0.25 }}
+						className={`transition-all duration-300 rounded-2xl border border-white/12 bg-gradient-to-b from-white/8 to-white/[0.03] backdrop-blur-md px-3 md:px-4 py-3 md:py-4 flex flex-col justify-between w-full ${
+							hasLongValue
+								? 'col-span-2 md:col-span-1 min-h-[150px] md:min-h-[180px]'
+								: 'min-h-[150px] md:min-h-[180px]'
+						}`}
+						style={{ opacity: 0.78 + progress * 0.22 }}
 					>
 						<span
-							className='md:text-[54px] text-[28px] text-[#FFD23E] flex font-bold tracking-wide'
+							className='text-[clamp(22px,4.2vw,50px)] text-[#FFD23E] flex font-extrabold tracking-wide leading-none whitespace-nowrap'
 							style={{
-								transform: `translateY(${lift}px) scale(${1 + (1 - progress) * 0.04})`,
-								textShadow: `0 0 24px rgba(255, 210, 62, ${glow})`,
+								transform: `translateY(${lift}px)`,
+								textShadow: `0 0 20px rgba(255, 210, 62, ${glow})`,
 							}}
 						>
 								{displayValue}
 								{el.suffix}
 						</span>
-						<p className='md:text-[24px] text-[16px] font-medium'>{el.title}</p>
+						<p className='mt-[10%] text-[clamp(16px,2vw,24px)] font-semibold uppercase text-white/90 leading-snug'>
+							{el.title}
+						</p>
 					</div>
 					)
 				})}

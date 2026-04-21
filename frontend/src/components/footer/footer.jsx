@@ -27,7 +27,7 @@ export default function Footer() {
 						{isEnglish ? 'Contacts' : 'Контакты'}
 					</li>
 					<li className='md:text-[21px] text-[16px] leading-relaxed'>
-						info@villa-phoenix.ru <br />
+						info@expophoenix.com <br />
 						+8 (495) 129-57-77 <br />
 						{isEnglish
 							? '231312, Russia, Moscow, Beregove, Bohdana Khmelnytskoho Street, 83'

@@ -192,6 +192,28 @@ a {
 	text-decoration: none;
 }
 
+.place-gallery-modal .ant-modal-content,
+.place-gallery-modal .ant-modal-header,
+.place-gallery-modal .ant-modal-body {
+	background: transparent !important;
+	box-shadow: none !important;
+}
+
+.place-gallery-modal .ant-modal,
+.place-gallery-modal .ant-modal-wrap {
+	background: transparent !important;
+}
+
+.place-gallery-modal .ant-modal-container {
+	background: transparent !important;
+}
+
+.place-gallery-modal .ant-modal-close {
+	color: #fff !important;
+	background: rgba(10, 15, 26, 0.7) !important;
+	border-radius: 999px;
+}
+
 @media (max-width: 700px){
 	h1 {
 		font-size: 26px !important;

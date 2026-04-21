@@ -35,7 +35,7 @@ export default function Partners() {
 							{partners.map(el => (
 								<article
 									key={el.id}
-									className='group border rounded-2xl bg-white/8 backdrop-blur-xl border-white/20 w-[32%] h-24 md:h-43 p-2 md:p-0 flex justify-center items-center overflow-hidden transition-all duration-300 hover:border-[#FFD23E]/45 hover:bg-white/15 hover:shadow-[0_12px_30px_rgba(255,210,62,0.2)]'
+									className='group border rounded-2xl bg-transparent md:bg-white/8 backdrop-blur-xl border-white/20 w-[32%] h-24 md:h-43 p-2 md:p-0 flex justify-center items-center overflow-hidden transition-all duration-300 hover:border-[#FFD23E]/45 md:hover:bg-white/15 hover:shadow-[0_12px_30px_rgba(255,210,62,0.2)]'
 								>
 									<img
 										src={el.image}
