@@ -29,6 +29,10 @@ public class ApplicationEmailService {
 
     @Async
     public void sendApplication(ApplicationRequest request) {
+        log.info(
+                "Sending application email to {} (applicant: {})",
+                mailTo,
+                request.email());
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(mailFrom);
@@ -37,8 +41,13 @@ public class ApplicationEmailService {
             message.setSubject("New expo application");
             message.setText(buildMessage(request));
             mailSender.send(message);
+            log.info("Application email accepted by SMTP server for {}", request.email());
         } catch (Exception e) {
-            log.error("Failed to send application email for {}", request.email(), e);
+            log.error(
+                    "Failed to send application email to {} (from {})",
+                    mailTo,
+                    mailFrom,
+                    e);
         }
     }
 

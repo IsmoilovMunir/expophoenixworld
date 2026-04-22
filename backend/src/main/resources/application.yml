@@ -12,8 +12,12 @@ spring:
           auth: true
           ssl:
             enable: ${SMTP_SSL_ENABLE:false}
+            trust: ${SMTP_HOST}
           starttls:
             enable: ${SMTP_STARTTLS_ENABLE:true}
+          connectiontimeout: 15000
+          timeout: 15000
+          writetimeout: 15000
 
 server:
   port: ${PORT:4000}
