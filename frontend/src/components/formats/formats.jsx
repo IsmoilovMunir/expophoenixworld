@@ -1,6 +1,7 @@
 import { CheckCircleOutlined } from '@ant-design/icons'
-import { Button, Checkbox, Input, Modal, Select } from 'antd'
-import { useEffect, useState } from 'react'
+import { Button } from 'antd'
+import { useState } from 'react'
+import ApplicationModal from '../application-modal/application-modal'
 import { useLanguage } from '../../context/language-context'
 
 export default function Formats() {
@@ -76,11 +77,11 @@ export default function Formats() {
 			],
 		},
 	]
-	useEffect(() => {
-		if (!formats.some(format => format.title === selectedFormat)) {
-			setSelectedFormat(formats[0].title)
-		}
-	}, [formats, selectedFormat])
+	const resolvedSelectedFormat = formats.some(
+		format => format.title === selectedFormat,
+	)
+		? selectedFormat
+		: formats[0].title
 
 	const openApplication = formatTitle => {
 		setSelectedFormat(formatTitle)
@@ -192,60 +193,15 @@ export default function Formats() {
 					</p>
 				</div>
 			</div>
-			<Modal
+			<ApplicationModal
 				open={isApplicationOpen}
-				onCancel={closeApplication}
-				footer={null}
-				centered
-				width={560}
-				title={isEnglish ? 'Leave an application' : 'Оставить заявку'}
-			>
-				<form
-					className='mt-2 flex flex-col gap-3'
-					onSubmit={event => {
-						event.preventDefault()
-						closeApplication()
-					}}
-				>
-					<Input placeholder={isEnglish ? 'Full name' : 'ФИО'} size='large' />
-					<Input placeholder='Email' size='large' />
-					<Input placeholder='+7(___)___-___-___' size='large' />
-					<Input
-						placeholder={isEnglish ? 'Company name' : 'Название компании'}
-						size='large'
-					/>
-					<Input
-						placeholder={isEnglish ? 'Company website link' : 'Ссылка Сайт вашей компании'}
-						size='large'
-					/>
-					<Select
-						size='large'
-						value={selectedFormat}
-						onChange={setSelectedFormat}
-						options={formats.map(format => ({
-							value: format.title,
-							label: format.title,
-						}))}
-					/>
-					<Button
-						type='primary'
-						htmlType='submit'
-						style={{
-							height: 46,
-							backgroundColor: '#FFD23E',
-							color: 'black',
-							fontWeight: 700,
-						}}
-					>
-						{isEnglish ? 'Submit application' : 'Отправить заявку'}
-					</Button>
-					<Checkbox>
-						{isEnglish
-							? 'I agree with the privacy policy'
-							: 'Cогласен с политикой конфиденциальности'}
-					</Checkbox>
-				</form>
-			</Modal>
+				onClose={closeApplication}
+				initialPlan={resolvedSelectedFormat}
+				planOptions={formats.map(format => ({
+					value: format.title,
+					label: format.title,
+				}))}
+			/>
 		</>
 	)
 }

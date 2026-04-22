@@ -1,7 +1,6 @@
-import { Button, Checkbox, Input, Modal, Select } from 'antd'
+import { Button, Select } from 'antd'
 import { useState } from 'react'
 import Flag from 'react-flagkit'
-import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import { useLanguage } from '../../context/language-context'
 import './navbar.css'
@@ -14,18 +13,6 @@ import MobileMenu from '../menu/menu'
 export default function Navbar() {
 	const { language, setLanguage, isEnglish } = useLanguage()
 	const [menuBtn, setMenuBtn] = useState(false)
-	const [isApplicationOpen, setIsApplicationOpen] = useState(false)
-	const planOptions = isEnglish
-		? [
-				{ value: 'PHOENIX PREMIUM', label: 'PHOENIX PREMIUM' },
-				{ value: 'PHOENIX LUXURY', label: 'PHOENIX LUXURY' },
-				{ value: 'PHOENIX VIP', label: 'PHOENIX VIP' },
-			]
-		: [
-				{ value: 'ФЕНИКС PREMIUM', label: 'ФЕНИКС PREMIUM' },
-				{ value: 'ФЕНИКС LUXURY', label: 'ФЕНИКС LUXURY' },
-				{ value: 'ФЕНИКС VIP', label: 'ФЕНИКС VIP' },
-			]
 	const navLabels = isEnglish
 		? {
 				about: 'About',
@@ -34,7 +21,7 @@ export default function Navbar() {
 				partners: 'Partners',
 				venue: 'Venue',
 				contacts: 'Contacts',
-				apply: 'Apply',
+				apply: 'Go to plans',
 			}
 		: {
 				about: 'О выставке',
@@ -43,13 +30,14 @@ export default function Navbar() {
 				partners: 'Партнеры',
 				venue: 'Площадка',
 				contacts: 'Контакты',
-				apply: 'Подать заявку',
+				apply: 'Перейти к тарифам',
 			}
 	function openMenu() {
 		setMenuBtn(prev => !prev)
 	}
-	const openApplication = () => setIsApplicationOpen(true)
-	const closeApplication = () => setIsApplicationOpen(false)
+	const scrollToFormats = () => {
+		document.getElementById('formats')?.scrollIntoView({ behavior: 'smooth' })
+	}
 
 	return (
 		<>
@@ -122,7 +110,7 @@ export default function Navbar() {
 								color: 'white',
 							}}
 						>
-							<a href=''>{navLabels.venue}</a>
+							<a href='#venue'>{navLabels.venue}</a>
 						</Button>
 					</li>
 					<li>
@@ -160,9 +148,7 @@ export default function Navbar() {
 						color: 'white',
 						border: 'none',
 					}}
-					dropdownStyle={{
-						backgroundColor: 'transparent',
-					}}
+					popupClassName='custom-select-dropdown'
 					className='custom-select'
 				>
 					<Option
@@ -200,7 +186,7 @@ export default function Navbar() {
 
 				<div className='hidden md:block'>
 					<Button
-						onClick={openApplication}
+						onClick={scrollToFormats}
 						style={{
 							fontFamily: 'Graphik LCG',
 							fontSize: '17px',
@@ -223,10 +209,8 @@ export default function Navbar() {
 							color: 'white',
 							border: 'none',
 						}}
-						dropdownStyle={{
-							backgroundColor: 'transparent',
-						}}
-						// className='custom-select'
+						popupClassName='custom-select-dropdown'
+						className='custom-select-mobile'
 					>
 						<Option
 							value='ru'
@@ -269,56 +253,6 @@ export default function Navbar() {
 				</div>
 			</nav>
 			<MobileMenu open={menuBtn} onClose={openMenu}/>
-			<Modal
-				open={isApplicationOpen}
-				onCancel={closeApplication}
-				footer={null}
-				centered
-				width={560}
-				title={isEnglish ? 'Leave an application' : 'Оставить заявку'}
-			>
-				<form
-					className='mt-2 flex flex-col gap-3'
-					onSubmit={event => {
-						event.preventDefault()
-						closeApplication()
-					}}
-				>
-					<Input placeholder={isEnglish ? 'Full name' : 'ФИО'} size='large' />
-					<Input placeholder='Email' size='large' />
-					<Input placeholder='+7(___)___-___-___' size='large' />
-					<Input
-						placeholder={isEnglish ? 'Company name' : 'Название компании'}
-						size='large'
-					/>
-					<Input
-						placeholder={isEnglish ? 'Company website link' : 'Ссылка Сайт вашей компании'}
-						size='large'
-					/>
-					<Select
-						size='large'
-						defaultValue={planOptions[0].value}
-						options={planOptions}
-					/>
-					<Button
-						type='primary'
-						htmlType='submit'
-						style={{
-							height: 46,
-							backgroundColor: '#FFD23E',
-							color: 'black',
-							fontWeight: 700,
-						}}
-					>
-						{isEnglish ? 'Submit application' : 'Отправить заявку'}
-					</Button>
-					<Checkbox>
-						{isEnglish
-							? 'I agree with the privacy policy'
-							: 'Cогласен с политикой конфиденциальности'}
-					</Checkbox>
-				</form>
-			</Modal>
 		</>
 	)
 }

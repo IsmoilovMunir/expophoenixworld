@@ -1,7 +1,9 @@
 import { useState } from 'react'
-import img1 from '../../assets/img-1.png'
 import { useLanguage } from '../../context/language-context'
 import './about-exhibition.css'
+
+const aboutExhibitionImage =
+	'https://s3.twcstorage.ru/b3f4d15d-d82b-4143-96cd-c52d1fa07c5e/generated_image_d37a177a0a9311f1bab81ea1a8429c95_4.jpeg'
 
 export default function AboutExhibition() {
 	const [isExpandedMobile, setIsExpandedMobile] = useState(false)
@@ -61,19 +63,23 @@ export default function AboutExhibition() {
 						<button
 							type='button'
 							onClick={() => setIsExpandedMobile(prev => !prev)}
-							className='mt-4 text-[#FFD23E] font-semibold text-[16px] px-4 py-2 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md'
+							className={`mt-4 w-fit rounded-full border px-3 py-1 text-[12px] md:text-[13px] font-semibold transition-colors ${
+								isExpandedMobile
+									? 'border-[#FFD23E]/70 bg-[#FFD23E]/20 text-[#FFE28A]'
+									: 'border-white/35 text-white/90 hover:border-[#FFD23E]/50 hover:bg-[#FFD23E]/10 hover:text-[#FFE28A]'
+							}`}
 						>
 							{isExpandedMobile
 								? isEnglish
 									? 'Hide'
 									: 'Скрыть'
 								: isEnglish
-									? 'Read more'
-									: 'Читать дальше'}
+									? 'Read details'
+									: 'Подробнее'}
 						</button>
 					</div>
 				</aside>
-				<img src={img1} alt='' className='w-full md:w-[38%] rounded-2xl' />
+				<img src={aboutExhibitionImage} alt='' className='w-full md:w-[38%] rounded-2xl' />
 			</div>
 		</>
 	)

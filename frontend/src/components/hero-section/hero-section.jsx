@@ -1,25 +1,12 @@
-import { Button, Checkbox, Input, Modal, Select } from 'antd'
-import { useState } from 'react'
+import { Button } from 'antd'
 import { useLanguage } from '../../context/language-context'
 import './hero-section.css'
 
 export default function HeroSection() {
 	const { isEnglish } = useLanguage()
-	const [isApplicationOpen, setIsApplicationOpen] = useState(false)
-	const planOptions = isEnglish
-		? [
-				{ value: 'PHOENIX PREMIUM', label: 'PHOENIX PREMIUM' },
-				{ value: 'PHOENIX LUXURY', label: 'PHOENIX LUXURY' },
-				{ value: 'PHOENIX VIP', label: 'PHOENIX VIP' },
-			]
-		: [
-				{ value: 'ФЕНИКС PREMIUM', label: 'ФЕНИКС PREMIUM' },
-				{ value: 'ФЕНИКС LUXURY', label: 'ФЕНИКС LUXURY' },
-				{ value: 'ФЕНИКС VIP', label: 'ФЕНИКС VIP' },
-			]
-
-	const openApplication = () => setIsApplicationOpen(true)
-	const closeApplication = () => setIsApplicationOpen(false)
+	const scrollToFormats = () => {
+		document.getElementById('formats')?.scrollIntoView({ behavior: 'smooth' })
+	}
 
 	return (
 		<>
@@ -43,7 +30,7 @@ export default function HeroSection() {
 
 					<div className='hidden md:block'>
 						<Button
-							onClick={openApplication}
+							onClick={scrollToFormats}
 							style={{
 								color: 'black',
 								backgroundColor: '#FFD23E',
@@ -56,14 +43,14 @@ export default function HeroSection() {
 								zIndex: '1',
 							}}
 						>
-							{isEnglish ? 'Apply for participation' : 'Подать заявку на участие'}
+							{isEnglish ? 'Go to plans' : 'Перейти к тарифам'}
 						</Button>
 					</div>
 
 					{/* for mobile */}
 					<div className='md:hidden w-full'>
 						<Button
-							onClick={openApplication}
+							onClick={scrollToFormats}
 							style={{
 								color: 'black',
 								backgroundColor: '#FFD23E',
@@ -75,7 +62,7 @@ export default function HeroSection() {
 								width: '100%',
 							}}
 						>
-							{isEnglish ? 'Apply for participation' : 'Подать заявку на участие'}
+							{isEnglish ? 'Go to plans' : 'Перейти к тарифам'}
 						</Button>
 					</div>
 				</aside>
@@ -91,56 +78,6 @@ export default function HeroSection() {
 					</div>
 				</aside>
 			</div>
-			<Modal
-				open={isApplicationOpen}
-				onCancel={closeApplication}
-				footer={null}
-				centered
-				width={560}
-				title={isEnglish ? 'Leave an application' : 'Оставить заявку'}
-			>
-				<form
-					className='mt-2 flex flex-col gap-3'
-					onSubmit={event => {
-						event.preventDefault()
-						closeApplication()
-					}}
-				>
-					<Input placeholder={isEnglish ? 'Full name' : 'ФИО'} size='large' />
-					<Input placeholder='Email' size='large' />
-					<Input placeholder='+7(___)___-___-___' size='large' />
-					<Input
-						placeholder={isEnglish ? 'Company name' : 'Название компании'}
-						size='large'
-					/>
-					<Input
-						placeholder={isEnglish ? 'Company website link' : 'Ссылка Сайт вашей компании'}
-						size='large'
-					/>
-					<Select
-						size='large'
-						defaultValue={planOptions[0].value}
-						options={planOptions}
-					/>
-					<Button
-						type='primary'
-						htmlType='submit'
-						style={{
-							height: 46,
-							backgroundColor: '#FFD23E',
-							color: 'black',
-							fontWeight: 700,
-						}}
-					>
-						{isEnglish ? 'Submit application' : 'Отправить заявку'}
-					</Button>
-					<Checkbox>
-						{isEnglish
-							? 'I agree with the privacy policy'
-							: 'Cогласен с политикой конфиденциальности'}
-					</Checkbox>
-				</form>
-			</Modal>
 		</>
 	)
 }

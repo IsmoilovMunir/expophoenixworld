@@ -16,6 +16,9 @@ import Partners from '../../components/partners/partners'
 import Place from '../../components/place/place'
 import WhatItDo from '../../components/what-it-do/what-it-do'
 
+const heroVideoUrl =
+	'https://s3.twcstorage.ru/b3f4d15d-d82b-4143-96cd-c52d1fa07c5e/0422.mp4'
+
 export default function HomePage() {
 	const whySectionRef = useRef(null)
 	const yellowParallaxRef = useRef(null)
@@ -63,6 +66,16 @@ export default function HomePage() {
 	return (
 		<>
 			<section className='hero-section '>
+				<video
+					className='hero-video'
+					src={heroVideoUrl}
+					autoPlay
+					muted
+					loop
+					playsInline
+					preload='metadata'
+					aria-label='Hero background video'
+				/>
 				<div className='hero-div pt-5 md:pt-0'>
 					<HeroSection />
 				</div>
@@ -111,16 +124,16 @@ export default function HomePage() {
 				<WhatItDo />
 			</section>
 
+			<section id='formats' className='pt-6 md:pt-8'>
+				<Formats />
+			</section>
+
 			<section className='pt-6 md:pt-8' id='partners'>
 				<Partners />
 			</section>
 
-			<section className='pt-6 md:pt-8'>
+			<section className='pt-6 md:pt-8' id='venue'>
 				<Place />
-			</section>
-
-			<section id='formats' className='pt-6 md:pt-8'>
-				<Formats />
 			</section>
 
 			<section className='w-full relative pt-6 md:pt-8' id='faq'>

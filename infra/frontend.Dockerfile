@@ -1,6 +1,10 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 
+# Public API base URL baked into the client (e.g. https://expophoenix.com when nginx proxies /api).
+ARG VITE_API_URL
+ENV VITE_API_URL=${VITE_API_URL}
+
 COPY frontend/package*.json ./
 RUN npm ci
 

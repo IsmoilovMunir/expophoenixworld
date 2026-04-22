@@ -19,7 +19,9 @@ export default function Countries() {
 	const isAutoRotateRef = useRef(true)
 	const COUNTRY_FOCUS_ZOOM = 2.1
 	const [isWebGlReady, setIsWebGlReady] = useState(false)
-	const [isWebGlScriptReady, setIsWebGlScriptReady] = useState(false)
+	const [isWebGlScriptReady, setIsWebGlScriptReady] = useState(
+		() => typeof window !== 'undefined' && Boolean(window.WE),
+	)
 	const [isGeoJsonReady, setIsGeoJsonReady] = useState(false)
 	const [activeCountryId, setActiveCountryId] = useState(1)
 
@@ -171,7 +173,6 @@ export default function Countries() {
 
 	useEffect(() => {
 		if (window.WE) {
-			setIsWebGlScriptReady(true)
 			return
 		}
 
@@ -210,7 +211,7 @@ export default function Countries() {
 			}).addTo(earth)
 
 			earthInstanceRef.current = earth
-			setIsWebGlReady(true)
+			requestAnimationFrame(() => setIsWebGlReady(true))
 
 			fetch('/countries-highlight.geojson')
 				.then(response => response.json())
@@ -236,14 +237,15 @@ export default function Countries() {
 			}
 			animationFrameRef.current = requestAnimationFrame(animate)
 		} catch {
-			setIsWebGlReady(false)
+			// Keep fallback globe when WebGL initialization fails.
 		}
 
 		return () => {
 			cancelAnimationFrame(animationFrameRef.current)
 			clearHighlightLayers()
 		}
-	}, [isWebGlScriptReady])
+		// countries/highlightCountry are intentionally stable for this init flow.
+	}, [isWebGlScriptReady]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<>

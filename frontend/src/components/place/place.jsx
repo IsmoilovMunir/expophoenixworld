@@ -1,13 +1,17 @@
 import { Button, Modal } from 'antd'
 import { useRef, useState } from 'react'
-import place1 from '../../assets/place1.png'
-import place2 from '../../assets/place2.png'
 import place3 from '../../assets/place3.png'
-import place4 from '../../assets/place4.png'
 import place5 from '../../assets/place5.png'
 import { useLanguage } from '../../context/language-context'
 
-function ZoomImage({ src, extraWrapperClass = '' }) {
+const placePrimaryImage =
+	'https://s3.twcstorage.ru/b3f4d15d-d82b-4143-96cd-c52d1fa07c5e/generated_image_c660d0fa098811f18645de9f2b50d028_5.jpeg'
+const placeSecondaryImage =
+	'https://s3.twcstorage.ru/b3f4d15d-d82b-4143-96cd-c52d1fa07c5e/generated_image_c660d0fa098811f18645de9f2b50d028_3.jpeg'
+const placeQuaternaryImage =
+	'https://s3.twcstorage.ru/b3f4d15d-d82b-4143-96cd-c52d1fa07c5e/generated_image_69f2d899098611f18d45565314a16c06_5.jpeg'
+
+function ZoomImage({ src, extraWrapperClass = '', onOpen }) {
 	const [isZoomedMobile, setIsZoomedMobile] = useState(false)
 
 	const handleMouseMove = event => {
@@ -23,6 +27,10 @@ function ZoomImage({ src, extraWrapperClass = '' }) {
 	}
 
 	const toggleMobileZoom = () => {
+		if (onOpen) {
+			onOpen()
+			return
+		}
 		if (window.innerWidth >= 768) {
 			return
 		}
@@ -39,7 +47,7 @@ function ZoomImage({ src, extraWrapperClass = '' }) {
 				onClick={toggleMobileZoom}
 				className={`w-full h-full object-cover rounded-2xl transition-transform duration-300 ease-out hover:scale-125 ${
 					isZoomedMobile ? 'scale-125' : ''
-				}`}
+				} ${onOpen ? 'cursor-pointer' : ''}`}
 			/>
 		</div>
 	)
@@ -48,7 +56,9 @@ function ZoomImage({ src, extraWrapperClass = '' }) {
 export default function Place() {
 	const { isEnglish } = useLanguage()
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false)
+	const [galleryMode, setGalleryMode] = useState('feature')
 	const [activeFeatureIndex, setActiveFeatureIndex] = useState(0)
+	const [activePhotoIndex, setActivePhotoIndex] = useState(0)
 	const touchStartXRef = useRef(0)
 	const mouseStartXRef = useRef(0)
 	const isMouseDraggingRef = useRef(false)
@@ -60,7 +70,7 @@ export default function Place() {
 					title: 'High comfort standards',
 					description:
 						'Thoughtful design and attention to detail create the right environment for productive work and quality rest.',
-					image: place2,
+					image: placeSecondaryImage,
 				},
 				{
 					title: 'Curated participation',
@@ -72,7 +82,7 @@ export default function Place() {
 					title: 'Personalized service',
 					description:
 						'We adapt to each guest: from transfer organization to accommodation preferences and on-site support.',
-					image: place4,
+					image: placeQuaternaryImage,
 				},
 				{
 					title: 'World-class infrastructure',
@@ -84,13 +94,13 @@ export default function Place() {
 					title: 'Work-life balance',
 					description:
 						'After negotiations, guests can use lounge zones, spa facilities, and walking alleys to restore energy.',
-					image: place1,
+					image: placePrimaryImage,
 				},
 				{
 					title: 'Convenient logistics',
 					description:
 						'Dedicated entry, guarded parking, and transfer options ensure comfort and safe mobility.',
-					image: place2,
+					image: placeSecondaryImage,
 				},
 			]
 		: [
@@ -98,7 +108,7 @@ export default function Place() {
 					title: 'Высокий уровень комфорта',
 					description:
 						'Продуманный дизайн и внимание к деталям обеспечивают благоприятную среду для продуктивной работы и отдыха.',
-					image: place2,
+					image: placeSecondaryImage,
 				},
 				{
 					title: 'Избирательность участия',
@@ -110,7 +120,7 @@ export default function Place() {
 					title: 'Сервис с индивидуальным подходом',
 					description:
 						'Мы учитываем потребности каждого гостя: от организации трансфера до нюансов размещения и сопровождения на мероприятии.',
-					image: place4,
+					image: placeQuaternaryImage,
 				},
 				{
 					title: 'Инфраструктура мирового уровня',
@@ -122,31 +132,61 @@ export default function Place() {
 					title: 'Баланс работы и восстановления',
 					description:
 						'После переговоров участники могут воспользоваться зонами отдыха, спа-комплексом и прогулочными аллеями, чтобы сохранить энергию.',
-					image: place1,
+					image: placePrimaryImage,
 				},
 				{
 					title: 'Удобная логистика',
 					description:
 						'Отдельный въезд для гостей выставки, охраняемая парковка и возможность организации трансфера обеспечивают комфорт и безопасность передвижения.',
-					image: place2,
+					image: placeSecondaryImage,
 				},
 			]
 
-	const openGallery = clickedIndex => {
+	const galleryPhotos = [
+		placePrimaryImage,
+		placeSecondaryImage,
+		place3,
+		placeQuaternaryImage,
+		place5,
+	]
+
+	const openFeatureGallery = clickedIndex => {
+		setGalleryMode('feature')
 		setActiveFeatureIndex(clickedIndex)
+		setIsGalleryOpen(true)
+	}
+	const openPhotoGallery = clickedIndex => {
+		setGalleryMode('photo')
+		setActivePhotoIndex(clickedIndex)
 		setIsGalleryOpen(true)
 	}
 
 	const closeGallery = () => setIsGalleryOpen(false)
-	const showPrev = () =>
+	const showPrev = () => {
+		if (galleryMode === 'photo') {
+			setActivePhotoIndex(prev => (prev === 0 ? galleryPhotos.length - 1 : prev - 1))
+			return
+		}
 		setActiveFeatureIndex(prev =>
 			prev === 0 ? featureCards.length - 1 : prev - 1,
 		)
-	const showNext = () =>
+	}
+	const showNext = () => {
+		if (galleryMode === 'photo') {
+			setActivePhotoIndex(prev =>
+				prev === galleryPhotos.length - 1 ? 0 : prev + 1,
+			)
+			return
+		}
 		setActiveFeatureIndex(prev =>
 			prev === featureCards.length - 1 ? 0 : prev + 1,
 		)
+	}
 	const activeFeatureCard = featureCards[activeFeatureIndex]
+	const activeImageSrc =
+		galleryMode === 'photo'
+			? galleryPhotos[activePhotoIndex]
+			: activeFeatureCard.image
 	const SWIPE_THRESHOLD = 40
 
 	const handleTouchStart = event => {
@@ -230,11 +270,15 @@ export default function Place() {
 						: 'Парк-отель «Вилла Феникс» — престижная площадка для мероприятий международного масштаба. Элегантная атмосфера и безупречный уровень организации создают идеальные условия для деловых встреч, переговоров, презентаций и установления долгосрочных партнёрств.'}
 				</p>
 				<div className='grid md:grid-cols-3 grid-cols-2 md:gap-6 gap-3 auto-rows-[145px] md:auto-rows-[220px]'>
-					<ZoomImage src={place1} extraWrapperClass='col-span-2 md:col-span-1 md:row-span-2' />
-					<ZoomImage src={place2} />
-					<ZoomImage src={place3} />
-					<ZoomImage src={place4} />
-					<ZoomImage src={place5} />
+					<ZoomImage
+						src={placePrimaryImage}
+						extraWrapperClass='col-span-2 md:col-span-1 md:row-span-2'
+						onOpen={() => openPhotoGallery(0)}
+					/>
+					<ZoomImage src={placeSecondaryImage} onOpen={() => openPhotoGallery(1)} />
+					<ZoomImage src={place3} onOpen={() => openPhotoGallery(2)} />
+					<ZoomImage src={placeQuaternaryImage} onOpen={() => openPhotoGallery(3)} />
+					<ZoomImage src={place5} onOpen={() => openPhotoGallery(4)} />
 				</div>
 				<h2 className='md:text-[52px] text-[36px] font-extrabold leading-tight uppercase'>
 					{isEnglish ? (
@@ -253,7 +297,7 @@ export default function Place() {
 					{featureCards.map((card, index) => (
 						<article
 							key={card.title}
-							onClick={() => openGallery(index)}
+							onClick={() => openFeatureGallery(index)}
 							className='rounded-2xl border border-white/12 bg-gradient-to-r from-white/8 to-white/3 backdrop-blur-md p-3.5 md:p-5 text-left'
 						>
 							<div className='flex items-start justify-between gap-3'>
@@ -302,16 +346,16 @@ export default function Place() {
 							onWheel={handleWheel}
 						>
 							<img
-								src={activeFeatureCard.image}
+								src={activeImageSrc}
 								alt=''
-								className='w-full h-auto md:h-full object-contain md:object-cover'
+								className='w-full h-full object-contain'
 								onTouchStart={handleTouchStart}
 								onTouchEnd={handleTouchEnd}
 								onMouseDown={handleMouseDown}
 								onMouseUp={handleMouseUp}
 								onMouseLeave={handleMouseLeave}
 							/>
-							{activeFeatureCard && (
+							{galleryMode === 'feature' && activeFeatureCard && (
 								<article className='relative md:absolute left-0 right-0 md:left-4 md:right-4 mt-2 md:mt-0 md:bottom-4 rounded-2xl border border-white/12 bg-[#0A0F1A]/75 backdrop-blur-md p-3 md:p-5 text-left max-h-[52vh] md:max-h-none overflow-y-auto'>
 									<div className='flex items-start justify-between gap-3'>
 										<span className='shrink-0 w-7 h-7 md:w-9 md:h-9 rounded-full bg-[#FFD23E] text-black font-extrabold flex items-center justify-center text-[12px] md:text-[15px]'>
@@ -331,18 +375,26 @@ export default function Place() {
 						</div>
 					</div>
 					<div className='mt-4 flex justify-center gap-2'>
-						{featureCards.map((card, index) => (
+						{(galleryMode === 'photo' ? galleryPhotos : featureCards).map((card, index) => (
 							<button
-								key={`${card.title}-${index}`}
+								key={`${index}-${galleryMode}`}
 								type='button'
-								onClick={() => setActiveFeatureIndex(index)}
+								onClick={() => {
+									if (galleryMode === 'photo') {
+										setActivePhotoIndex(index)
+										return
+									}
+									setActiveFeatureIndex(index)
+								}}
 								className={`w-2.5 h-2.5 rounded-full ${
-									index === activeFeatureIndex
+									index === (galleryMode === 'photo' ? activePhotoIndex : activeFeatureIndex)
 										? 'bg-[#FFD23E]'
 										: 'bg-white/30'
 								}`}
 								aria-label={
-									isEnglish ? `Open image ${index + 1}` : `Открыть изображение ${index + 1}`
+									isEnglish
+										? `Open image ${index + 1}`
+										: `Открыть изображение ${index + 1}`
 								}
 							/>
 						))}

@@ -1,6 +1,5 @@
 import { CloseOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
-import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 import { useLanguage } from '../../context/language-context'
 
@@ -14,7 +13,7 @@ export default function MobileMenu({ open, onClose }) {
 				partners: 'Partners',
 				venue: 'Venue',
 				contacts: 'Contacts',
-				apply: 'Apply',
+				apply: 'Go to plans',
 			}
 		: {
 				about: 'О выставке',
@@ -23,7 +22,7 @@ export default function MobileMenu({ open, onClose }) {
 				partners: 'Партнеры',
 				venue: 'Площадка',
 				contacts: 'Контакты',
-				apply: 'Подать заявку',
+				apply: 'Перейти к тарифам',
 			}
 
 	return (
@@ -74,7 +73,7 @@ export default function MobileMenu({ open, onClose }) {
 					{labels.partners}
 					</a>
 					<a
-						href='#'
+						href='#venue'
 						onClick={onClose}
 						className='rounded-2xl px-4 py-3 text-[20px] font-semibold tracking-wide transition-all duration-200 active:scale-[0.99] hover:bg-white/10'
 					>
@@ -99,7 +98,7 @@ export default function MobileMenu({ open, onClose }) {
 
 			{/* BUTTON */}
 			<div className='mt-6 mb-8 px-5 flex justify-center'>
-				<Link className='w-full max-w-[360px]'>
+				<a href='#formats' onClick={onClose} className='w-full max-w-[360px]'>
 					<Button
 						style={{
 							fontFamily: 'Graphik LCG',
@@ -114,7 +113,7 @@ export default function MobileMenu({ open, onClose }) {
 					>
 						{labels.apply}
 					</Button>
-				</Link>
+				</a>
 			</div>
 		</div>
 	)

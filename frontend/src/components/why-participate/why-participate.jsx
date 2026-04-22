@@ -98,7 +98,7 @@ export default function WhyParticipate() {
 							key={el.id}
 							className='border md:w-[32%] md:h-55 p-4 mt-5 flex flex-col gap-3 rounded-2xl bg-white/3 backdrop-blur-md border-white/10 overflow-hidden'
 						>
-							<h2 className='md:text-[22px] text-[20px] font-extrabold leading-tight'>
+							<h2 className='md:text-[22px] text-[20px] font-extrabold leading-tight text-[#FFD23E]'>
 								{el.title}
 							</h2>
 							<p className='md:text-[16px] text-[14px] leading-snug text-left flex-1 overflow-visible md:overflow-y-auto md:[scrollbar-width:thin] md:[scrollbar-color:#D9B437_rgba(255,255,255,0.15)] md:[&::-webkit-scrollbar]:w-1.5 md:[&::-webkit-scrollbar-track]:rounded-full md:[&::-webkit-scrollbar-track]:bg-white/10 md:[&::-webkit-scrollbar-thumb]:rounded-full md:[&::-webkit-scrollbar-thumb]:bg-[#D9B437] md:[&::-webkit-scrollbar-thumb]:hover:bg-[#FFD23E]'>

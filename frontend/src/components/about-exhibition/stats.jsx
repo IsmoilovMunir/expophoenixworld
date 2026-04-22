@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLanguage } from '../../context/language-context'
 
 const STEP_INTERVAL_MS = 250
@@ -9,37 +9,40 @@ function formatNumber(value) {
 
 export default function Stats() {
 	const { isEnglish } = useLanguage()
-	const stats = [
-		{
-			id: 1,
-			title: isEnglish ? 'companies' : 'компаний',
-			target: 500,
-			step: 100,
-			suffix: '+',
-		},
-		{
-			id: 2,
-			title: isEnglish ? 'top participants' : 'супер участников',
-			target: 5000,
-			step: 1000,
-			suffix: '+',
-		},
-		{
-			id: 4,
-			title: isEnglish ? 'of space' : 'пространства',
-			target: 10000,
-			step: 1000,
-			suffix: isEnglish ? ' m2' : ' кв.м',
-			useGrouping: true,
-		},
-		{
-			id: 5,
-			title: isEnglish ? 'per participant' : 'на участника',
-			target: 10,
-			step: 1,
-			suffix: isEnglish ? ' m2' : ' кв.м',
-		},
-	]
+	const stats = useMemo(
+		() => [
+			{
+				id: 1,
+				title: isEnglish ? 'companies' : 'компаний',
+				target: 500,
+				step: 100,
+				suffix: '+',
+			},
+			{
+				id: 2,
+				title: isEnglish ? 'top participants' : 'супер участников',
+				target: 5000,
+				step: 1000,
+				suffix: '+',
+			},
+			{
+				id: 4,
+				title: isEnglish ? 'of space' : 'пространства',
+				target: 10000,
+				step: 1000,
+				suffix: isEnglish ? ' m2' : ' кв.м',
+				useGrouping: true,
+			},
+			{
+				id: 5,
+				title: isEnglish ? 'per participant' : 'на участника',
+				target: 10,
+				step: 1,
+				suffix: isEnglish ? ' m2' : ' кв.м',
+			},
+		],
+		[isEnglish],
+	)
 
 	const [animatedValues, setAnimatedValues] = useState(() =>
 		stats.map(() => 0),
@@ -79,7 +82,7 @@ export default function Stats() {
 		const startTime = performance.now()
 
 		const tick = currentTime => {
-			const nextAnimatedValues = stats.map((stat, index) => {
+			const nextAnimatedValues = stats.map(stat => {
 				const localElapsed = currentTime - startTime
 				const stepsCount = Math.ceil(stat.target / stat.step)
 				const localDuration = stepsCount * STEP_INTERVAL_MS
@@ -116,7 +119,7 @@ export default function Stats() {
 		frameId = requestAnimationFrame(tick)
 
 		return () => cancelAnimationFrame(frameId)
-	}, [hasStarted])
+	}, [hasStarted, stats])
 
 	return (
 		<>

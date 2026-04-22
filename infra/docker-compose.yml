@@ -1,10 +1,37 @@
+# Run from repo: docker compose -f infra/docker-compose.yml --env-file infra/.env up -d --build
+# Create infra/.env from infra/compose.env.example first.
+
 services:
+  api:
+    build:
+      context: ..
+      dockerfile: infra/backend.Dockerfile
+    container_name: expophoenixworld-api
+    restart: unless-stopped
+    environment:
+      PORT: ${PORT:-4000}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_SSL_ENABLE: ${SMTP_SSL_ENABLE:-false}
+      SMTP_STARTTLS_ENABLE: ${SMTP_STARTTLS_ENABLE:-true}
+      MAIL_FROM: ${MAIL_FROM}
+      MAIL_TO: ${MAIL_TO}
+    expose:
+      - "4000"
+
   frontend:
     build:
       context: ..
       dockerfile: infra/frontend.Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL}
     container_name: expophoenixworld-frontend
     restart: unless-stopped
+    depends_on:
+      - api
     ports:
       - "80:80"
       - "443:443"

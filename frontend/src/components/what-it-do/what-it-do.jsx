@@ -10,10 +10,6 @@ import { useLanguage } from '../../context/language-context'
 export default function WhatItDo() {
 	const { isEnglish } = useLanguage()
 	const [expandedId, setExpandedId] = useState(null)
-	const scrollToFormats = () => {
-		const formatsSection = document.getElementById('formats')
-		formatsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-	}
 	const articles = [
 		{
 			id: 1,
@@ -148,29 +144,15 @@ export default function WhatItDo() {
 										event.stopPropagation()
 										setExpandedId(prev => (prev === el.id ? null : el.id))
 									}}
-									className={`w-fit rounded-full border px-3 py-1 text-[12px] md:text-[13px] font-semibold transition-colors ${
-										expandedId === el.id
-											? 'border-[#FFD23E]/70 bg-[#FFD23E]/20 text-[#FFE28A]'
-											: 'border-white/35 text-white/90 hover:border-[#FFD23E]/50 hover:bg-[#FFD23E]/10 hover:text-[#FFE28A]'
-									}`}
+									className='mt-4 text-[#FFD23E] font-semibold text-[16px] px-4 py-2 rounded-xl border border-white/20 bg-white/10 backdrop-blur-md'
 								>
 									{expandedId === el.id
 										? isEnglish
 											? 'Hide details'
 											: 'Свернуть'
 										: isEnglish
-											? 'Read details'
-											: 'Подробнее'}
-								</button>
-								<button
-									type='button'
-									onClick={event => {
-										event.stopPropagation()
-										scrollToFormats()
-									}}
-									className='w-fit rounded-full border border-[#FFD23E]/55 bg-[#FFD23E]/14 px-3 py-1 text-[12px] md:text-[13px] font-semibold text-[#FFE28A] transition-colors hover:border-[#FFD23E]/75 hover:bg-[#FFD23E]/22'
-								>
-									{isEnglish ? 'Go to plans' : 'Перейти к тарифам'}
+											? 'Read more'
+											: 'Читать дальше'}
 								</button>
 							</div>
 						</article>
