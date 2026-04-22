@@ -21,7 +21,7 @@ export default function Navbar() {
 				partners: 'Partners',
 				venue: 'Venue',
 				contacts: 'Contacts',
-				apply: 'Go to plans',
+				apply: 'Apply',
 			}
 		: {
 				about: 'О выставке',
@@ -30,13 +30,13 @@ export default function Navbar() {
 				partners: 'Партнеры',
 				venue: 'Площадка',
 				contacts: 'Контакты',
-				apply: 'Перейти к тарифам',
+				apply: 'Подать заявку',
 			}
 	function openMenu() {
 		setMenuBtn(prev => !prev)
 	}
-	const scrollToFormats = () => {
-		document.getElementById('formats')?.scrollIntoView({ behavior: 'smooth' })
+	const openApplicationModal = () => {
+		window.dispatchEvent(new CustomEvent('phoenix-open-application'))
 	}
 
 	return (
@@ -186,7 +186,7 @@ export default function Navbar() {
 
 				<div className='hidden md:block'>
 					<Button
-						onClick={scrollToFormats}
+						onClick={openApplicationModal}
 						style={{
 							fontFamily: 'Graphik LCG',
 							fontSize: '17px',

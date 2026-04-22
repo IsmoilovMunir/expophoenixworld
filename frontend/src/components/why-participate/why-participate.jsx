@@ -1,7 +1,11 @@
+import { Button } from 'antd'
 import { useLanguage } from '../../context/language-context'
 
 export default function WhyParticipate() {
 	const { isEnglish } = useLanguage()
+	const scrollToFormats = () => {
+		document.getElementById('formats')?.scrollIntoView({ behavior: 'smooth' })
+	}
 	const cards = isEnglish
 		? [
 				{
@@ -106,6 +110,25 @@ export default function WhyParticipate() {
 							</p>
 						</article>
 					))}
+				</div>
+				<div className='mt-8 md:mt-10 flex justify-center md:justify-start'>
+					<Button
+						htmlType='button'
+						onClick={scrollToFormats}
+						style={{
+							color: 'black',
+							backgroundColor: '#FFD23E',
+							fontWeight: 'bold',
+							padding: '22px 28px',
+							fontSize: '16px',
+							fontFamily: 'Graphik LCG',
+							border: 'none',
+							height: 'auto',
+						}}
+						className='md:!text-[18px] md:!py-4 md:!px-10 w-full max-w-md md:w-auto md:max-w-none'
+					>
+						{isEnglish ? 'Go to plans' : 'Перейти к тарифам'}
+					</Button>
 				</div>
 			</div>
 		</>

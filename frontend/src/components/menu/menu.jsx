@@ -13,7 +13,7 @@ export default function MobileMenu({ open, onClose }) {
 				partners: 'Partners',
 				venue: 'Venue',
 				contacts: 'Contacts',
-				apply: 'Go to plans',
+				apply: 'Apply',
 			}
 		: {
 				about: 'О выставке',
@@ -22,8 +22,13 @@ export default function MobileMenu({ open, onClose }) {
 				partners: 'Партнеры',
 				venue: 'Площадка',
 				contacts: 'Контакты',
-				apply: 'Перейти к тарифам',
+				apply: 'Подать заявку',
 			}
+
+	const openApplicationModal = () => {
+		window.dispatchEvent(new CustomEvent('phoenix-open-application'))
+		onClose()
+	}
 
 	return (
 		<div
@@ -98,22 +103,23 @@ export default function MobileMenu({ open, onClose }) {
 
 			{/* BUTTON */}
 			<div className='mt-6 mb-8 px-5 flex justify-center'>
-				<a href='#formats' onClick={onClose} className='w-full max-w-[360px]'>
-					<Button
-						style={{
-							fontFamily: 'Graphik LCG',
-							fontSize: '20px',
-							padding: '20px 24px',
-							color: 'black',
-							backgroundColor: '#FFD23E',
-							width: '100%',
-							borderRadius: '16px',
-							fontWeight: '700',
-						}}
-					>
-						{labels.apply}
-					</Button>
-				</a>
+				<Button
+					type='button'
+					onClick={openApplicationModal}
+					className='w-full max-w-[360px]'
+					style={{
+						fontFamily: 'Graphik LCG',
+						fontSize: '20px',
+						padding: '20px 24px',
+						color: 'black',
+						backgroundColor: '#FFD23E',
+						width: '100%',
+						borderRadius: '16px',
+						fontWeight: '700',
+					}}
+				>
+					{labels.apply}
+				</Button>
 			</div>
 		</div>
 	)

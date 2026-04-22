@@ -4,8 +4,8 @@ import './hero-section.css'
 
 export default function HeroSection() {
 	const { isEnglish } = useLanguage()
-	const scrollToFormats = () => {
-		document.getElementById('formats')?.scrollIntoView({ behavior: 'smooth' })
+	const openApplicationModal = () => {
+		window.dispatchEvent(new CustomEvent('phoenix-open-application'))
 	}
 
 	return (
@@ -30,7 +30,7 @@ export default function HeroSection() {
 
 					<div className='hidden md:block'>
 						<Button
-							onClick={scrollToFormats}
+							onClick={openApplicationModal}
 							style={{
 								color: 'black',
 								backgroundColor: '#FFD23E',
@@ -43,14 +43,14 @@ export default function HeroSection() {
 								zIndex: '1',
 							}}
 						>
-							{isEnglish ? 'Go to plans' : 'Перейти к тарифам'}
+							{isEnglish ? 'Apply for participation' : 'Подать заявку на участие'}
 						</Button>
 					</div>
 
 					{/* for mobile */}
 					<div className='md:hidden w-full'>
 						<Button
-							onClick={scrollToFormats}
+							onClick={openApplicationModal}
 							style={{
 								color: 'black',
 								backgroundColor: '#FFD23E',
@@ -62,7 +62,7 @@ export default function HeroSection() {
 								width: '100%',
 							}}
 						>
-							{isEnglish ? 'Go to plans' : 'Перейти к тарифам'}
+							{isEnglish ? 'Apply for participation' : 'Подать заявку на участие'}
 						</Button>
 					</div>
 				</aside>

@@ -1,6 +1,6 @@
 import { CheckCircleOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ApplicationModal from '../application-modal/application-modal'
 import { useLanguage } from '../../context/language-context'
 
@@ -83,11 +83,21 @@ export default function Formats() {
 		? selectedFormat
 		: formats[0].title
 
-	const openApplication = formatTitle => {
+	const openApplication = useCallback(formatTitle => {
 		setSelectedFormat(formatTitle)
 		setIsApplicationOpen(true)
-	}
+	}, [])
+
 	const closeApplication = () => setIsApplicationOpen(false)
+
+	useEffect(() => {
+		const onOpenFromHero = () => {
+			const defaultTitle = isEnglish ? 'PHOENIX PREMIUM' : 'ФЕНИКС PREMIUM'
+			openApplication(defaultTitle)
+		}
+		window.addEventListener('phoenix-open-application', onOpenFromHero)
+		return () => window.removeEventListener('phoenix-open-application', onOpenFromHero)
+	}, [isEnglish, openApplication])
 	const activeDesktopFormat =
 		formats.find(format => format.id === activeFormatId) ?? formats[0]
 

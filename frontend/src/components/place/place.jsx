@@ -55,6 +55,9 @@ function ZoomImage({ src, extraWrapperClass = '', onOpen }) {
 
 export default function Place() {
 	const { isEnglish } = useLanguage()
+	const scrollToFormats = () => {
+		document.getElementById('formats')?.scrollIntoView({ behavior: 'smooth' })
+	}
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false)
 	const [galleryMode, setGalleryMode] = useState('feature')
 	const [activeFeatureIndex, setActiveFeatureIndex] = useState(0)
@@ -318,6 +321,25 @@ export default function Place() {
 							</div>
 						</article>
 					))}
+				</div>
+				<div className='mt-2 md:mt-4 flex justify-center md:justify-start'>
+					<Button
+						htmlType='button'
+						onClick={scrollToFormats}
+						style={{
+							color: 'black',
+							backgroundColor: '#FFD23E',
+							fontWeight: 'bold',
+							padding: '22px 28px',
+							fontSize: '16px',
+							fontFamily: 'Graphik LCG',
+							border: 'none',
+							height: 'auto',
+						}}
+						className='md:!text-[18px] md:!py-4 md:!px-10 w-full max-w-md md:w-auto md:max-w-none'
+					>
+						{isEnglish ? 'Go to plans' : 'Перейти к тарифам'}
+					</Button>
 				</div>
 				<Modal
 					open={isGalleryOpen}
