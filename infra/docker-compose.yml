@@ -1,5 +1,8 @@
-# Run from repo: docker compose -f infra/docker-compose.yml --env-file infra/.env up -d --build
-# Create infra/.env from infra/compose.env.example first.
+# From repo root (/opt/expophoenixworld):
+#   docker compose -f infra/docker-compose.yml --env-file infra/.env up -d --build
+# From this directory (infra/):
+#   docker compose -f docker-compose.yml --env-file .env up -d --build
+# (.env paths are relative to your current shell cwd, not to this file.)
 
 services:
   api:
