@@ -20,7 +20,9 @@ export default function HeroSection() {
 					<h1 className='font-extrabold md:text-[48px] text-[32px] uppercase leading-tight'>
 						{isEnglish ? 'International exhibition' : 'Международная выставка'}{' '}
 						<br className='hidden md:block' />{' '}
-						<span className='text-[#FFD23E]'>Phoenix</span>
+						<span className='text-[#FFD23E]'>
+							{isEnglish ? 'Phoenix + BRICS' : 'Феникс + БРИКС'}
+						</span>
 					</h1>
 					<p className='md:text-[28.8px] text-[16px] leading-snug font-light'>
 						{isEnglish

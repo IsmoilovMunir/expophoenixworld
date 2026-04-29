@@ -23,8 +23,8 @@ export default function Footer() {
 					<li className='text-[#5D6068] text-[18px]'>
 						{isEnglish ? 'VENUE:' : 'МЕСТО ПРОВЕДЕНИЯ:'}
 					</li>
-					<li className='md:text-[28px] text-[22px] font-bold'>
-						{isEnglish ? 'Villa Phoenix' : 'Вилла Фениск'}
+					<li className='md:text-[28px] text-[22px] font-bold text-[#FFD23E]'>
+						{isEnglish ? 'Villa Phoenix' : 'ВИЛЛА ФЕНИКС'}
 					</li>
 				</ul>
 				<ul className='flex flex-col gap-3 md:gap-5 items-center md:items-start'>
@@ -56,6 +56,35 @@ export default function Footer() {
 						</a>
 					</li>
 				</ul>
+			</div>
+			<div className='px-5 md:px-0 max-w-350 m-auto pt-8 pb-6 border-t border-white/10 text-[13px] md:text-[14px] text-[#B8BEC9] flex flex-row flex-wrap items-center justify-center md:justify-start gap-x-5 gap-y-2'>
+				<p className='whitespace-nowrap'>
+					{isEnglish
+						? '© Phoenix 2026. Sole proprietor Yulia Anatolyevna Gileva'
+						: '© Феникс 2026. ИП Гилева Юлия Анатольевна'}
+				</p>
+				<p className='whitespace-nowrap'>
+					{isEnglish
+						? 'OGRNIP - 324774600844731, Moscow'
+						: 'ОГРНИП - 324774600844731, Москва'}
+				</p>
+				<div className='flex flex-row flex-wrap items-center gap-x-5 gap-y-2 justify-center md:justify-start'>
+					<a href='#' className='hover:text-[#FFD23E] transition-colors'>
+						{isEnglish ? 'Privacy Policy' : 'Политика конфиденциальности'}
+					</a>
+					<a href='#' className='hover:text-[#FFD23E] transition-colors'>
+						{isEnglish ? 'Loyalty Program Offer' : 'Оферта программы лояльности'}
+					</a>
+					<a
+						href='https://axiondev.ru'
+						target='_blank'
+						rel='noreferrer'
+						className='transition-colors'
+						style={{ color: '#FFD23E' }}
+					>
+						Produced by Axion Dev
+					</a>
+				</div>
 			</div>
 		</>
 	)
