@@ -14,6 +14,7 @@ import Formats from '../../components/formats/formats'
 import { MapComponent } from '../../components/map/map'
 import Partners from '../../components/partners/partners'
 import Place from '../../components/place/place'
+import Team from '../../components/team/team'
 import WhatItDo from '../../components/what-it-do/what-it-do'
 
 const heroVideoUrl =
@@ -130,6 +131,10 @@ export default function HomePage() {
 
 			<section className='pt-6 md:pt-8' id='partners'>
 				<Partners />
+			</section>
+
+			<section className='pt-6 md:pt-8' id='team'>
+				<Team />
 			</section>
 
 			<section className='pt-6 md:pt-8' id='venue'>

@@ -19,6 +19,7 @@ export default function Navbar() {
 				benefits: 'Benefits',
 				formats: 'Participation formats',
 				partners: 'Partners',
+				team: 'Team',
 				venue: 'Venue',
 				contacts: 'Contacts',
 				apply: 'Apply',
@@ -28,6 +29,7 @@ export default function Navbar() {
 				benefits: 'Преимущества',
 				formats: 'Форматы участия',
 				partners: 'Партнеры',
+				team: 'Команда',
 				venue: 'Площадка',
 				contacts: 'Контакты',
 				apply: 'Подать заявку',
@@ -99,6 +101,18 @@ export default function Navbar() {
 							}}
 						>
 							<a href='#partners'>{navLabels.partners}</a>
+						</Button>
+					</li>
+					<li>
+						<Button
+							type='text'
+							style={{
+								fontFamily: 'Graphik LCG',
+								fontSize: '17px',
+								color: 'white',
+							}}
+						>
+							<a href='#team'>{navLabels.team}</a>
 						</Button>
 					</li>
 					<li>

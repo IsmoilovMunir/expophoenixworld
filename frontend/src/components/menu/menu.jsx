@@ -11,6 +11,7 @@ export default function MobileMenu({ open, onClose }) {
 				benefits: 'Benefits',
 				formats: 'Participation formats',
 				partners: 'Partners',
+				team: 'Team',
 				venue: 'Venue',
 				contacts: 'Contacts',
 				apply: 'Apply',
@@ -20,6 +21,7 @@ export default function MobileMenu({ open, onClose }) {
 				benefits: 'Преимущества',
 				formats: 'Форматы участия',
 				partners: 'Партнеры',
+				team: 'Команда',
 				venue: 'Площадка',
 				contacts: 'Контакты',
 				apply: 'Подать заявку',
@@ -76,6 +78,13 @@ export default function MobileMenu({ open, onClose }) {
 						className='rounded-2xl px-4 py-3 text-[20px] font-semibold tracking-wide transition-all duration-200 active:scale-[0.99] hover:bg-white/10'
 					>
 					{labels.partners}
+					</a>
+					<a
+						href='#team'
+						onClick={onClose}
+						className='rounded-2xl px-4 py-3 text-[20px] font-semibold tracking-wide transition-all duration-200 active:scale-[0.99] hover:bg-white/10'
+					>
+						{labels.team}
 					</a>
 					<a
 						href='#venue'
