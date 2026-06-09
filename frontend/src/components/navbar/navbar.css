@@ -1,18 +1,91 @@
-.custom-select {
-  min-width: 124px;
+.navbar-shell {
+  padding: 0.875rem 1rem;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-shell {
+    padding: 1rem 1.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .navbar-shell {
+    padding: 0.5rem 1.5rem;
+  }
+}
+
+.navbar-logo {
+  width: 10.5rem;
+  height: auto;
+  max-width: 52vw;
+}
+
+@media (min-width: 768px) {
+  .navbar-logo {
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 6rem;
+  }
+}
+
+.navbar-menu {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  gap: 0.125rem;
+}
+
+.navbar-menu .ant-btn {
+  padding: 4px 7px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  font-size: 15px !important;
+  line-height: 1.3 !important;
+}
+
+@media (min-width: 1024px) {
+  .navbar-menu {
+    gap: 0.375rem;
+  }
+
+  .navbar-menu .ant-btn {
+    padding: 4px 9px !important;
+    font-size: 16px !important;
+  }
+}
+
+.navbar-apply .ant-btn {
+  padding: 12px 20px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  font-size: 15px !important;
+  line-height: 1.3 !important;
+}
+
+@media (min-width: 1024px) {
+  .navbar-apply .ant-btn {
+    padding: 14px 24px !important;
+    font-size: 16px !important;
+  }
+}
+
+.custom-select {
+  min-width: 96px;
+  display: flex;
+  align-items: center;
+  margin-top: 0;
 }
 
 .custom-select .ant-select-content {
-  min-height: 34px;
-  padding-right: 8px;
+  min-height: 30px;
+  padding-right: 6px;
   align-items: center;
 }
 
 .custom-select .ant-select-content-value {
   color: #fff !important;
+  font-size: 14px !important;
 }
 
 .custom-select .ant-select-suffix,
@@ -35,9 +108,27 @@
   background: rgba(255, 210, 62, 0.18) !important;
 }
 
+.custom-select-mobile {
+  min-width: 80px;
+}
+
+.custom-select-mobile .ant-select-content {
+  min-height: 28px;
+}
+
+.custom-select-mobile .ant-select-content-value {
+  color: #fff !important;
+  font-size: 13px !important;
+}
+
+.custom-select-mobile .ant-select-suffix,
+.custom-select-mobile .ant-select-arrow {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
 @media (max-width: 700px) {
-  .custom-select{
+  .custom-select {
     display: none;
   }
 }
-

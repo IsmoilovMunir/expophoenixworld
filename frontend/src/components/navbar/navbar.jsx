@@ -2,13 +2,38 @@ import { Button, Select } from 'antd'
 import { useState } from 'react'
 import Flag from 'react-flagkit'
 import logo from '../../assets/logo.png'
-import { useLanguage } from '../../context/language-context'
-import './navbar.css'
-// import ru from '../../assets/ru.png'
-const { Option } = Select
-// import MobileMenu from './MobileMenu'
 import { MenuOutlined } from '@ant-design/icons'
+import { useLanguage } from '../../context/language-context'
 import MobileMenu from '../menu/menu'
+import './navbar.css'
+
+const { Option } = Select
+
+const navLinkStyle = {
+	fontFamily: 'Graphik LCG',
+	color: 'white',
+}
+
+const languageOptions = (isEnglish) => [
+	{
+		value: 'ru',
+		label: (
+			<div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+				<Flag country='RU' size={18} />
+				<span>{isEnglish ? 'Rus' : 'Рус'}</span>
+			</div>
+		),
+	},
+	{
+		value: 'en',
+		label: (
+			<div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+				<Flag country='GB' size={18} />
+				<span>{isEnglish ? 'Eng' : 'Анг'}</span>
+			</div>
+		),
+	},
+]
 
 export default function Navbar() {
 	const { language, setLanguage, isEnglish } = useLanguage()
@@ -34,6 +59,18 @@ export default function Navbar() {
 				contacts: 'Контакты',
 				apply: 'Подать заявку',
 			}
+
+	const navItems = [
+		{ href: '#about', label: navLabels.about },
+		{ href: '#why', label: navLabels.benefits },
+		{ href: '#formats', label: navLabels.formats },
+		{ href: '#partners', label: navLabels.partners },
+		{ href: '#team', label: navLabels.team },
+		{ href: '#venue', label: navLabels.venue },
+		{ href: '#faq', label: 'FAQ' },
+		{ href: '#contact', label: navLabels.contacts },
+	]
+
 	function openMenu() {
 		setMenuBtn(prev => !prev)
 	}
@@ -49,176 +86,63 @@ export default function Navbar() {
 						? { position: 'fixed', width: '100%', backgroundColor: '#0B0F1A' }
 						: { position: 'sticky', top: 0, zIndex: 30 }
 				}
-				className='md:px-0 relative max-w-350 m-auto flex justify-between items-center py-3'
+				className='navbar-shell relative max-w-350 m-auto flex justify-between items-center'
 			>
-				<img src={logo} alt='' className='pl-5 w-28 md:w-auto' />
-				<ul className='hidden md:flex gap-5'>
-					<li>
-						<Button
-							type='text'
-							style={{
-								fontFamily: 'Graphik LCG',
-								fontSize: '17px',
-								color: 'white',
-							}}
-						>
-							<a href='#about' className=''>
-								{navLabels.about}
-							</a>
-						</Button>
-					</li>
-					<li>
-						<Button
-							type='text'
-							style={{
-								fontFamily: 'Graphik LCG',
-								fontSize: '17px',
-								color: 'white',
-							}}
-						>
-							<a href='#why'>{navLabels.benefits}</a>
-						</Button>
-					</li>
-					<li>
-						<Button
-							type='text'
-							style={{
-								fontFamily: 'Graphik LCG',
-								fontSize: '17px',
-								color: 'white',
-							}}
-						>
-							<a href='#formats'>{navLabels.formats}</a>
-						</Button>
-					</li>
-					<li>
-						<Button
-							type='text'
-							style={{
-								fontFamily: 'Graphik LCG',
-								fontSize: '17px',
-								color: 'white',
-							}}
-						>
-							<a href='#partners'>{navLabels.partners}</a>
-						</Button>
-					</li>
-					<li>
-						<Button
-							type='text'
-							style={{
-								fontFamily: 'Graphik LCG',
-								fontSize: '17px',
-								color: 'white',
-							}}
-						>
-							<a href='#team'>{navLabels.team}</a>
-						</Button>
-					</li>
-					<li>
-						<Button
-							type='text'
-							style={{
-								fontFamily: 'Graphik LCG',
-								fontSize: '17px',
-								color: 'white',
-							}}
-						>
-							<a href='#venue'>{navLabels.venue}</a>
-						</Button>
-					</li>
-					<li>
-						<Button
-							type='text'
-							style={{
-								fontFamily: 'Graphik LCG',
-								fontSize: '17px',
-								color: 'white',
-							}}
-						>
-							<a href='#faq'>FAQ</a>
-						</Button>
-					</li>
-					<li>
-						<Button
-							type='text'
-							style={{
-								fontFamily: 'Graphik LCG',
-								fontSize: '17px',
-								color: 'white',
-							}}
-						>
-							<a href='#contact'>{navLabels.contacts}</a>
-						</Button>
-					</li>
+				<img src={logo} alt='' className='navbar-logo shrink-0' />
+
+				<ul className='navbar-menu hidden md:flex'>
+					{navItems.map(item => (
+						<li key={item.href}>
+							<Button type='text' style={navLinkStyle}>
+								<a href={item.href}>{item.label}</a>
+							</Button>
+						</li>
+					))}
 				</ul>
 
-				<Select
-					value={language}
-					onChange={setLanguage}
-					style={{
-						width: 120,
-						backgroundColor: 'transparent',
-						color: 'white',
-						border: 'none',
-					}}
-					popupClassName='custom-select-dropdown'
-					className='custom-select'
-				>
-					<Option
-						value='ru'
-						style={{
-							backgroundColor: 'transparent',
-							color: 'white',
-						}}
-					>
-						<div
-							style={{
-								display: 'flex',
-								alignItems: 'center',
-								gap: 8,
-							}}
-						>
-							<Flag country='RU' size={20} />
-							<span>{isEnglish ? 'Rus' : 'Рус'}</span>
-						</div>
-					</Option>
-
-					<Option
-						value='en'
-						style={{
-							backgroundColor: 'transparent',
-							color: 'white',
-						}}
-					>
-						<div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-							<Flag country='GB' size={20} />
-							<span>{isEnglish ? 'Eng' : 'Анг'}</span>
-						</div>
-					</Option>
-				</Select>
-
-				<div className='hidden md:block'>
-					<Button
-						onClick={openApplicationModal}
-						style={{
-							fontFamily: 'Graphik LCG',
-							fontSize: '17px',
-							padding: '25px 40px',
-							color: 'white',
-							backgroundColor: 'transparent',
-						}}
-					>
-						{navLabels.apply}
-					</Button>
-				</div>
-
-				<div className='md:hidden flex items-center gap-1 pr-4'>
+				<div className='hidden md:flex items-center gap-2 shrink-0'>
 					<Select
 						value={language}
 						onChange={setLanguage}
 						style={{
-							width: 86,
+							width: 96,
+							backgroundColor: 'transparent',
+							color: 'white',
+							border: 'none',
+						}}
+						popupClassName='custom-select-dropdown'
+						className='custom-select'
+					>
+						{languageOptions(isEnglish).map(option => (
+							<Option
+								key={option.value}
+								value={option.value}
+								style={{ backgroundColor: 'transparent', color: 'white' }}
+							>
+								{option.label}
+							</Option>
+						))}
+					</Select>
+
+					<div className='navbar-apply'>
+						<Button
+							onClick={openApplicationModal}
+							style={{
+								...navLinkStyle,
+								backgroundColor: 'transparent',
+							}}
+						>
+							{navLabels.apply}
+						</Button>
+					</div>
+				</div>
+
+				<div className='md:hidden flex items-center gap-1.5 shrink-0'>
+					<Select
+						value={language}
+						onChange={setLanguage}
+						style={{
+							width: 80,
 							backgroundColor: 'transparent',
 							color: 'white',
 							border: 'none',
@@ -226,47 +150,26 @@ export default function Navbar() {
 						popupClassName='custom-select-dropdown'
 						className='custom-select-mobile'
 					>
-						<Option
-							value='ru'
-							style={{
-								backgroundColor: 'transparent',
-								color: 'white',
-							}}
-						>
-							<div
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									gap: 8,
-								}}
+						{languageOptions(isEnglish).map(option => (
+							<Option
+								key={option.value}
+								value={option.value}
+								style={{ backgroundColor: 'transparent', color: 'white' }}
 							>
-								<Flag country='RU' size={20} />
-								<span>{isEnglish ? 'Rus' : 'Рус'}</span>
-							</div>
-						</Option>
-
-						<Option
-							value='en'
-							style={{
-								backgroundColor: 'transparent',
-								color: 'white',
-							}}
-						>
-							<div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-								<Flag country='GB' size={20} />
-								<span>{isEnglish ? 'Eng' : 'Анг'}</span>
-							</div>
-						</Option>
+								{option.label}
+							</Option>
+						))}
 					</Select>
 					<button
 						onClick={openMenu}
-						className='md:hidden text-white text-xl'
+						className='md:hidden text-white text-lg p-1'
+						aria-label={isEnglish ? 'Open menu' : 'Открыть меню'}
 					>
 						<MenuOutlined />
 					</button>
 				</div>
 			</nav>
-			<MobileMenu open={menuBtn} onClose={openMenu}/>
+			<MobileMenu open={menuBtn} onClose={openMenu} />
 		</>
 	)
 }
